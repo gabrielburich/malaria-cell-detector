@@ -1,14 +1,14 @@
 # malaria-cell-detector
-Detecção do parasita da malaria em imagens de esfregaço de sangue
+Detecção do parasita da malária em imagens de esfregaço de sangue
 
 # Dataset
-https://www.kaggle.com/iarunava/cell-images-for-detecting-malaria
+[Clique aqui para acessar o dataset](https://www.kaggle.com/iarunava/cell-images-for-detecting-malaria)
 
 # Images
-As imagens dentro do diretório `images` são uma amostra do dataset, balanceadas com a mesma tonalidade.
-Para evitar problemas com o treshold
+As imagens dentro do diretório `images` são uma amostra do dataset, balanceadas com a mesma tonalidade,
+para evitar problemas com o threshold
 
-# Dependencias
+# Dependências
 
 Nesse projeto é utilizado a implementação do opencv para python.  
 Então é necessário ter ela instalada na máquina.  
