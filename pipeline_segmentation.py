@@ -6,8 +6,12 @@ from utils import black_areas_to_white, separate_border, separate_parasite, colo
 
 
 # Runs the algorithms in order to process the image
-# in order to identify whether it represents an infected or not
+# segmental in background, cell and parasite.
+# In addition to creating an image with each of
+# these parts highlighted
 # first parameter is the image to process
+# returns an array with these images in order
+# only_parasite, only_border, only_cell, highlight
 def pipeline_segmentation(original_image):
     # Create a copy to not change the original image
     image_to_process = original_image.copy()
@@ -20,34 +24,24 @@ def pipeline_segmentation(original_image):
     # Only the parasite will be in white, the rest of the image in black
     # Images without the parasite will be all black
     ret, image_threshold = cv2.threshold(image_without_border, 130, 255, cv2.THRESH_BINARY_INV)
-    # Only parasite image
+    # Creates only parasite data based on threshold
     only_parasite = separate_parasite(image_threshold, original_image)
-    # Only border image
+    # Creates Only border data based on gray scale image
     only_border = separate_border(image_gray_scale, original_image, 0)
-    # Only border image with border in white
+    # Creates Only border data based on gray scale image with border in white
+    # This will be used to highlight de border
     only_border_in_white = separate_border(image_gray_scale, original_image, 255)
-    # Only cell image
+    # Creates Only cell image, based on original image - only parasite image
     only_cell = cv2.subtract(original_image, only_parasite)
 
-    # highlight the parasite to blue
+    # highlight the parasite with blue color
     highlight = color_image_area(only_parasite, original_image, [255, 0, 0])
 
-    # highlight the cell to green
+    # highlight the cell with green color
     highlight = color_image_area(only_cell, highlight, [0, 255, 0])
 
-    # highlight the border to red
+    # highlight the border with red color
     highlight = color_image_area(only_border_in_white, highlight, [0, 0, 255])
 
-    # Show the images
-    cv2.imshow("Only Parasite", only_parasite)
-    cv2.imshow("Only Border", only_border)
-    cv2.imshow("Only Cell", only_cell)
-    cv2.imshow("highlight", highlight)
-    cv2.imshow("Original Image", original_image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
-
-# Call the function
-img = cv2.imread("/home/gburich/PycharmProjects/malaria-cell-detector/images/all-images/C167P128ReThinF_IMG_20151201_105354_cell_238.png")
-pipeline_segmentation(img)
+    # return the images into an array
+    return [only_parasite, only_border, only_cell, highlight]

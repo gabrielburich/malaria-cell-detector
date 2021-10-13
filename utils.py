@@ -41,7 +41,9 @@ def create_zero_copy(img_original):
     for i in range(height):
         # run through the columns
         for j in range(width):
+            # run through the channels
             for c in range(channels):
+                # In each point set 0
                 img_out[i, j, c] = 0
 
     # Returns the result image
@@ -76,7 +78,7 @@ def separate_parasite(image_threshold, original_image):
 # The first parameter is a image in gray scale
 # The second parameter is the original image to get the parasite image
 # The last parameter is the value to set when identify the border
-# returns an image with only the parasite
+# returns an image with only the border
 def separate_border(image_gray_scale, original_image, value_to_set):
     # Creates a copy with all values in black
     only_border = create_zero_copy(original_image)
