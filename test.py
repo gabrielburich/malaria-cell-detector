@@ -30,4 +30,3 @@ def segments_images_and_show_result(prefix):
 segments_images_and_show_result("infected")
 segments_images_and_show_result("uninfected")
 segments_images_and_show_result("not-from-dataset")
-segments_images_and_show_result("random-image")
