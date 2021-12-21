@@ -1,29 +1,35 @@
 # malaria-cell-detector
-Detecção do parasita da malária em imagens de esfregaço de sangue
+Malaria parasite identification on blood smear images. A simple implementation for college.
+
+The Code segments the image into 3 parts: the parasite, the cell and the border. An image is also created with the segmented parts highlighted.
+
+# Content
+
+* [Dataset](#dataset)
+* [Images](#images)
+* [Dependencies](#dependencies)
+* [How to run](#how-to-run)
+* [Project structure](#project-structure)
 
 # Dataset
-[Clique aqui para acessar o dataset](https://www.kaggle.com/iarunava/cell-images-for-detecting-malaria)
+A repository of segmented cells from the thin blood smear slide images.
+[Click here to access the dataset page](https://lhncbc.nlm.nih.gov/LHC-downloads/downloads.html#malaria-datasets)
 
 # Images
-As imagens dentro do diretório `images` são uma amostra do dataset, balanceadas com a mesma tonalidade,
-para evitar problemas com o threshold
+The images inside the `images` directory are sampled from the dataset, balanced with the same hue, to avoid threshold issues. It also contains two non-dataset images for testing with non-dataset images.
 
-# Dependências
+# Dependencies
+In this project the implementation of opencv for python is used.
 
-Nesse projeto é utilizado a implementação do opencv para python.  
-Então é necessário ter ela instalada na máquina.  
-[Clique aqui para: Como instalar o opencv](https://pypi.org/project/opencv-python/)
-
-# Como executar
-
-Para rodar os testes execute na raiz:
+# How to run
+To run the tests run at root:
 `python test.py`
 
-# Estrutura do projeto
+# Project structure
 
 ```bash
-├── images // As imagens utilizadas nos testes
-├── pipeline_segmentation.py // Arquivo com a sequencia de algoritmos para segmentação
-├── test.py // Arquivo que chama os testes
-└── utils.py // Arquivo com funções utilitarias
+├── images // The images used in the tests
+├── pipeline_segmentation.py // File with the sequence of segmentation algorithms
+├── test.py // File to run the test
+└── utils.py // File with utility functions
 ```
